@@ -9,9 +9,9 @@ galaxy_info:
   - name: Debian
     versions:
     - all
-  - name: Ubuntu
+  - name: EL
     versions:
-    - all
+    - 7
   categories:
     - cloud
     - development

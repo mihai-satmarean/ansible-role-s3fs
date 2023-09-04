@@ -7,6 +7,16 @@
     update_cache: yes
     cache_valid_time: 86400
   with_items: "{{ s3fs.dependencies }}"
+  when: ansible_os_family == "Debian"
+
+- name: Make sure s3fs dependencies are present
+  become: yes
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ s3fs.dependencies }}"
+  when: ansible_os_family == 'RedHat' and ansible_distribution_version == '7'
 
 - name: Download s3fs source
   get_url:

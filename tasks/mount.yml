@@ -29,7 +29,7 @@
 
 - name: Add s3fs to run levels
   become: yes
-  command: "update-rc.d s3fs defaults"
+  command: "{{ 'update-rc.d s3fs defaults' if ansible_os_family == 'Debian' else 'systemctl enable s3fs' if ansible_os_family == 'RedHat' }}"
   changed_when: False
 
 - name: Make sure mountpoints are present in fstab
