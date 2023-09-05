@@ -1,0 +1,16 @@
+- name: Install EPEL repository and s3fs-fuse
+  yum:
+    name: 
+      - epel-release
+      - s3fs-fuse
+    state: present
+  when: ansible_os_family == 'RedHat' and ansible_distribution_version >= '7'
+
+- name: Install s3fs
+  become: yes
+  apt:
+    name: s3fs
+    state: present
+    update_cache: yes
+    cache_valid_time: 86400
+  when: ansible_os_family == "Debian"

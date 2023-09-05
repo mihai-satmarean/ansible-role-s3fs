@@ -26,11 +26,13 @@
     dest: /etc/init.d/s3fs
     mode: 0755
   notify: restart s3fs
+  when: install_method == 'source'
 
 - name: Add s3fs to run levels
   become: yes
   command: "{{ 'update-rc.d s3fs defaults' if ansible_os_family == 'Debian' else 'systemctl enable s3fs' if ansible_os_family == 'RedHat' }}"
   changed_when: False
+  when: install_method == 'source'
 
 - name: Make sure mountpoints are present in fstab
   become: yes

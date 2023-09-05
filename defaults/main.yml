@@ -3,3 +3,6 @@ s3fs:
   source: "https://github.com/s3fs-fuse/s3fs-fuse/archive/refs/tags/v1.93.tar.gz"
   buckets: []
   add_to_fstab: True
+
+#install methods: package, source
+install_method: package
